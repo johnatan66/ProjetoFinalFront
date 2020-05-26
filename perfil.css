@@ -1,0 +1,20 @@
+#pedidos{
+    border-top: 1px solid white;
+    padding-top: 20px;
+    color: white;
+}
+
+#titulo{
+    padding-top: 10px;
+    color: white;
+    margin: auto;
+}
+
+#personal{
+    color: white;
+}
+
+a{
+    color: white;   
+}
+
