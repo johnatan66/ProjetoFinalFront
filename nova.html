@@ -4,18 +4,18 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="perfil.css">
-    <script type="text/javascript" src="perfil.js"></script>
-    <title> VM Per Use - Perfil </title>
+    <script type="text/javascript" src="nova.js"></script>
+    <title> VM Per Use - Nova Solicitação </title>
 </head>
 
 <body style="background:rgba(255, 68, 0, 0.863);" onload="carregaperfil();">
     <div class="container">
         <div class="row" id="titulo">
             <div class="col-10">
-                <h3> Seu perfil
+                <h3> Nova solicitação
             </div>
             <button type="button" class="btn btn-primary" onclick="logout();"> Logout </button>
-            <img src="logo1.png" style="width:45px;height:45px";>
+            <img src="logo1.png" style="width:45px;height:45px" ;>
             </h3>
             <hr />
         </div>
@@ -28,13 +28,23 @@
 
             </div>
         </div>
-        <div class="col-12">
-            <a href="nova.html">Novo pedido</a>
+
+        <div>
+
+            <form id="formPedido">
+                <div>
+                    <right>
+                        <p> <label for="nome">Processadores: </label>
+                    </right> <input type="text" id="Processadores"> </p>
+                    <p></p><label for="nome">Memória RAM: </label> <input type="text" id="Memória"> </p>
+                    <p></p><label for="nome">Capacidade HD: </label> <input type="text" id="HD"></p>
+                    <p></p><label for="nome">Transferência: </label> <input type="text" id="Transferência"></p>
+                </div>
+                <div id = "listaSw">    
+                </div>
+
+                <p> <button type="button" onclick="obterCusto();"> Obter custo </button></p>
         </div>
-        <div id="pedidos">
-            <!-- todos os pedidos feitos pelo usuario -->
-        </div>
-        
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
