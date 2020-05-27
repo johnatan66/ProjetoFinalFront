@@ -6,29 +6,18 @@
     <link rel="stylesheet" href="detalhe.css">
     <link rel="stylesheet" href="perfil.css">
     <script type="text/javascript" src="detalhe.js"></script>
-    <script type="text/javascript" src="perfil.js"></script>
     <title> VM Per Use - Detalhe Solicitação </title>
 
 <body style="background:rgba(255, 68, 0, 0.863);" onload="recuperaDetalhe();">
-    
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="perfil.html" style="color:orangered;" >Perfil</a></li>
-          <li class="breadcrumb-item active" aria-current="page" style="color: black;">Detalhes</li>
-        </ol>
-      </nav>
-
     <div class="container">
         <div class="row" id="titulo">
             <div class="col-10">
-                <h3> Detalhes da Solicitação
-                    <button type="button" class="btn btn-primary" onclick="nova();"> Nova Solicitação </button>
-                </h3>
+                <h3> Detalhe da Solicitação
             </div>
-            <div class="col-2">
-                <button type="button" class="btn btn-primary" onclick="logout();"> Logout </button>
-                <img src="logo1.png" style="width:45px;height:45px" ;>
-            </div>
+            <button type="button" class="btn btn-primary" onclick="logout();"> Logout </button>
+            <img src="logo1.png" style="width:45px;height:45px" ;>
+            </h3>
+            <hr />
         </div>
 
         <div class="row">

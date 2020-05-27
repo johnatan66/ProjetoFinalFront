@@ -3,32 +3,22 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="detalhe.css">
     <link rel="stylesheet" href="perfil.css">
-    <script type="text/javascript" src="detalhe.js"></script>
     <script type="text/javascript" src="perfil.js"></script>
-    <title> VM Per Use - Detalhe Solicitação </title>
+    <title> VM Per Use - Perfil </title>
+</head>
 
-<body style="background:rgba(255, 68, 0, 0.863);" onload="recuperaDetalhe();">
-    
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="perfil.html" style="color:orangered;" >Perfil</a></li>
-          <li class="breadcrumb-item active" aria-current="page" style="color: black;">Detalhes</li>
-        </ol>
-      </nav>
-
+<body style="background:rgba(255, 68, 0, 0.863);" onload="carregaperfil();">
     <div class="container">
         <div class="row" id="titulo">
-            <div class="col-10">
-                <h3> Detalhes da Solicitação
-                    <button type="button" class="btn btn-primary" onclick="nova();"> Nova Solicitação </button>
-                </h3>
+            <div class="col-8">
+                <h3> Seu perfil
             </div>
-            <div class="col-2">
-                <button type="button" class="btn btn-primary" onclick="logout();"> Logout </button>
-                <img src="logo1.png" style="width:45px;height:45px" ;>
-            </div>
+            <button type="button" class="btn btn-primary" onclick="novaSolicitacao();"> Nova Solicitação </button>
+            <button type="button" class="btn btn-primary" onclick="logout();"> Logout </button>
+            <img src="logo1.png" style="width:45px;height:45px";>
+            </h3>
+            <hr />
         </div>
 
         <div class="row">
@@ -40,15 +30,9 @@
             </div>
         </div>
 
-        <div class="col-12" id="detalhesSolicitacao">
+        <div id="pedidos">
+            <!-- todos os pedidos feitos pelo usuario -->
         </div>
-
-        <div class="col-12" id="detalhesMaquina">
-        </div>
-
-        <div class="col-12" id="detalhesSoftware">
-        </div>
-
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -60,7 +44,5 @@
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
 </body>
-
-</head>
 
 </html>

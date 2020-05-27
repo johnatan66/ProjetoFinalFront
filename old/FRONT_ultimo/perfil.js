@@ -3,16 +3,20 @@ var templateBio = '<h3> {{NOME}} </h3> <hr> <p> RACF: {{RACF}}</p> ' +
    ' <p> SETOR: {{SETOR}}</p>' +
    ' <p> TELEFONE: {{TELEFONE}}</p>';
 var templatePedidos = '<div class="row">' +
-   '<div class="col-12"> <a href = "detalhe.html?id={{NUM}}"> Solicitação: {{NUM2}} - {{DATA}}</a> </div>' +
+   '<div class="col-12"> <a href = "detalhe.html?id={{NUM}}"> {{DATA}} - {{OBSERVACOES}}</a> </div>' +
    '</div>';
 
 function carregaperfil() {
+   // qual a lógica disso?
+   // primeiro: se o usuário tá logado, as infos dele estão no LocalStorage, certo?
+   // e se não tiver? --> mando pro index
+   // se estiver, eu só preencho as coisas (o que é bem legal!!!)
 
    var userSTR = localStorage.getItem("VMuser");
    console.log(userSTR);
 
    if (!userSTR) {
-      window.location = "index.html"; 
+      window.location = "index.html";  // se não existir info do usuario, ele não tá logado, logo mando pro index
    }
    usuario = JSON.parse(userSTR);
 
@@ -23,12 +27,12 @@ function carregaperfil() {
       .replace("{{TELEFONE}}", usuario.telefone);
 }
 
-function carregapedidos() {
+function carregapedidos(){
    var todosPedidos = "";
    for (i = 0; i < usuario.pedidos.length; i++) {
       todosPedidos = todosPedidos + templatePedidos.replace("{{DATA}}", usuario.pedidos[i].data)
+         .replace("{{OBSERVACOES}}", usuario.pedidos[i].observacoes)
          .replace("{{NUM}}", usuario.pedidos[i].numSolicitacao)
-         .replace("{{NUM2}}", usuario.pedidos[i].numSolicitacao)
    }
    document.getElementById("pedidos").innerHTML = todosPedidos;
 
@@ -43,7 +47,7 @@ function nova() {
    window.location = "nova.html";
 }
 
-function startperfil() {
+function startperfil(){
    carregaperfil();
    carregapedidos();
 }

@@ -1,23 +1,16 @@
-var templateFoto = '<img src="{{IMAGEMFOTO}}" style="width:180px;height:180px">';
-var templateBio = '<h3> {{NOME}} </h3> <hr> <p> RACF: {{RACF}}</p> ' +
-    ' <p> SETOR: {{SETOR}}</p>' +
-    ' <p> TELEFONE: {{TELEFONE}}</p>';
 var templateSolicitacao = '<div class="row">' +
-    '<div class="col-12"> Solicitação: {{NUM}} </div>' +
-    '<div class="col-12"> {{DATA}} - {{OBSERVACOES}} </div>' +
+    '<div class="col-12"><strong><h3> Solicitação: {{NUM}} - {{DATA}} </h3></strong></div>' +
     '</div>';
 
-// Inicio - GI
-
 var templateItem = '<div class="row">' +
-    '<div class="col-12"> ID da máquina: {{IDMAQ}} </div>' +
-    '<div class="col-12"> Itens solicitados: </div>' +
+    '<div class="col-12"><strong><h5> ID da máquina: {{IDMAQ}} </h5></strong><p></div>' +
+    '<div class="col-12"><h5> Itens solicitados: </h5></div>' +
     '<div class="col-12"> Processadores: {{NUMPROC}} </div>' +
     '<div class="col-12"> Memória em GB: {{MEMO}}</div>' +
     '<div class="col-12"> Capacidade HD: {{CAPHD}}</div>' +
-    '<div class="col-12"> Transferência: {{TRANSF}}</div>' +
-    '<div class="col-12"> Valor: R$ {{VALORMAQ}}</div>' +
-    '<div class="col-12"> Softwares solicitados: </div>' +
+    '<div class="col-12"> Transferência: {{TRANSF}}<p></div>' +
+    '<div class="col-12"><strong> Valor da máquina: R$ {{VALORMAQ}},00 </strong><p></div>' +
+    '<div class="col-12"><strong><h5> Softwares solicitados: </h5></strong></div>' +
     '</div>';
 
 var templateSoftware = '<div class="row"> ' +
@@ -25,8 +18,6 @@ var templateSoftware = '<div class="row"> ' +
     '<div class="col-4"> {{FORNECEDOR}} </div>' +
     '<div class="col-4"> R$ {{VALOR}},00 </div>' +
     '</div>';
-
-// Fim - GI
 
 function recuperaDetalhe() {
 
@@ -45,73 +36,68 @@ function recuperaDetalhe() {
     console.log(userSTR);
 
     if (!userSTR) {
-        window.location = "index.html";  // se não existir info do usuario, ele não tá logado, logo mando pro index
+        window.location = "index.html";  
     }
     usuario = JSON.parse(userSTR);
 
 
-    // inicio das alterações
+    for (i = 0; i < usuario.pedidos.length; i++) {
+        if (usuario.pedidos[i].numSolicitacao == id) {
+            var suporte = i;
+            var idmaquina = usuario.pedidos[i].maquina.id;
+            var process = usuario.pedidos[i].maquina.processador;
+            var memo = usuario.pedidos[i].maquina.memoriaGB;
+            var capacid = usuario.pedidos[i].maquina.capacidadeHD;
+            var transfe = usuario.pedidos[i].maquina.transferencia;
+            var valor = usuario.pedidos[i].maquina.valor;
 
-   var idmaquina = usuario.pedidos[id - 1].maquina.id;  
-     var process = usuario.pedidos[id - 1].maquina.processador;
-     var memo = usuario.pedidos[id - 1].maquina.memoriaGB;
-     var capacid = usuario.pedidos[id - 1].maquina.capacidadeHD;
-     var transfe = usuario.pedidos[id - 1].maquina.transferencia;
-     var valor = usuario.pedidos[id - 1].maquina.valor;
- 
-     console.log(idmaquina + " deu certo");
-     console.log(process + " deu certo");
-     console.log(memo + " deu certo");
-     console.log(capacid + " deu certo");
-     console.log(transfe + " deu certo");
-     console.log(valor + " deu certo"); 
+            console.log(idmaquina + " deu certo");
+            console.log(process + " deu certo");
+            console.log(memo + " deu certo");
+            console.log(capacid + " deu certo");
+            console.log(transfe + " deu certo");
+            console.log(valor + " deu certo");
 
-    var listaItens = usuario.pedidos[id - 1].itensSolicitacao;
+            var listaItens = usuario.pedidos[i].itensSolicitacao;
 
-    for (i = 0; i < listaItens.length; i++) {
+            for (i = 0; i < listaItens.length; i++) {
 
-        console.log(listaItens[i].software.nome);
-        console.log(listaItens[i].software.fornecedor);
-        console.log(listaItens[i].software.valor);
+                console.log(listaItens[i].software.nome);
+                console.log(listaItens[i].software.fornecedor);
+                console.log(listaItens[i].software.valor);
+            }
+
+            console.log(i);
+        }
     }
 
-    // fim das alterções 
 
-
-    document.getElementById("foto").innerHTML = templateFoto.replace("{{IMAGEMFOTO}}", usuario.linkFoto);
-    document.getElementById("personal").innerHTML = templateBio.replace("{{NOME}}", usuario.nome)
-        .replace("{{RACF}}", usuario.racf)
-        .replace("{{SETOR}}", usuario.setor)
-        .replace("{{TELEFONE}}", usuario.telefone);
-
-    // Inicio - GI
-
-    var listaItens = usuario.pedidos[id - 1].itensSolicitacao;
+    var listaItens = usuario.pedidos[suporte].itensSolicitacao;
     var todosPedidos = "";
     var todosItens = "";
     var todosSoftware = "";
 
 
-    todosPedidos = todosPedidos + templateSolicitacao.replace("{{DATA}}", usuario.pedidos[id - 1].data)
-        .replace("{{OBSERVACOES}}", usuario.pedidos[id - 1].observacoes)
-        .replace("{{NUM}}", usuario.pedidos[id - 1].numSolicitacao);
+    todosPedidos = todosPedidos + templateSolicitacao.replace("{{DATA}}", usuario.pedidos[suporte].data)
+        .replace("{{OBSERVACOES}}", usuario.pedidos[suporte].observacoes)
+        .replace("{{NUM}}", usuario.pedidos[suporte].numSolicitacao);
 
     document.getElementById("detalhesSolicitacao").innerHTML = todosPedidos;
     console.log(todosPedidos);
 
-     todosItens = todosItens + templateItem.replace("{{IDMAQ}}", usuario.pedidos[id - 1].maquina.id)
-        .replace("{{NUMPROC}}", usuario.pedidos[id - 1].maquina.processador)
-        .replace("{{MEMO}}", usuario.pedidos[id - 1].maquina.memoriaGB)
-        .replace("{{CAPHD}}", usuario.pedidos[id - 1].maquina.capacidadeHD)
-        .replace("{{TRANSF}}", usuario.pedidos[id - 1].maquina.transferencia)
-        .replace("{{VALORMAQ}}", usuario.pedidos[id - 1].maquina.valor);
+    todosItens = todosItens + templateItem.replace("{{IDMAQ}}", usuario.pedidos[suporte].maquina.id)
+        .replace("{{NUMPROC}}", usuario.pedidos[suporte].maquina.processador)
+        .replace("{{MEMO}}", usuario.pedidos[suporte].maquina.memoriaGB)
+        .replace("{{CAPHD}}", usuario.pedidos[suporte].maquina.capacidadeHD)
+        .replace("{{TRANSF}}", usuario.pedidos[suporte].maquina.transferencia)
+        .replace("{{VALORMAQ}}", usuario.pedidos[suporte].maquina.valor);
 
-        document.getElementById("detalhesMaquina").innerHTML = todosItens;
-        console.log(todosItens); 
+    document.getElementById("detalhesMaquina").innerHTML = todosItens;
+    console.log(todosItens);
 
     for (i = 0; i < listaItens.length; i++) {
         todosSoftware = todosSoftware +
-        templateSoftware.replace("{{SOFTWARE}}", listaItens[i].software.nome)
+            templateSoftware.replace("{{SOFTWARE}}", listaItens[i].software.nome)
                 .replace("{{FORNECEDOR}}", listaItens[i].software.fornecedor)
                 .replace("{{VALOR}}", listaItens[i].software.valor);
     }
@@ -121,9 +107,7 @@ function recuperaDetalhe() {
 
 }
 
-// Fim - GI
-
-function logout() {
-    localStorage.removeItem("VMuser");
-    window.location = "index.html";
+function startdetalhe() {
+    carregaperfil();
+    recuperaDetalhe();
 }
