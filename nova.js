@@ -35,6 +35,7 @@ function carregaitens(){
    .then(res => res.json())
    .then(res => preencheCheckbox(res))
 }
+
 function preencheCheckbox(res){
    var templateCh = '<input type="checkbox" name="softwares[]" value="{{ID}}"> {{NOME}} <br/>';
 
@@ -61,33 +62,15 @@ function obterCusto(){
        memoriaGB : Memoria,
        capacidadeHD: HD,
        transferencia: Transfer,
-       //solicitante: {
-          // id: user.id
-      // }
-      // itensSolicitacao: []
+   
    }
-
-   /*
-   var Maquina = {
-      method : 'POST',
-      body : JSON.stringify(msgMaquina),
-      headers :{
-          'Content-Type': 'application/json'
-      }
-   }
-
-   fetch("http://localhost:8080/solicitacoes/nova/maquina", Maquina)
-   .then(res => alert("FOI!!!"))
-   .catch(err => alert("DEU RUIM!!"));
-
-   console.log(msgMaquina);
-*/
+  
    var today = new Date();
-   var dd = String(today.getDate());
-   var mm = String(today.getMonth());
+   var dd = String(today.getDate()).padStart(2,'0');
+   var mm = String(today.getMonth()).padStart(2,'0');
    var yyyy = String(today.getFullYear());
 
-   var data = yyyy +"-"+ mm + "-" + dd;
+   var data = dd +"/"+ mm + "/" + yyyy;
 
     var msgSolicitacao = {
        data : data,

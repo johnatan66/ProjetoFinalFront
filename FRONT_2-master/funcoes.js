@@ -39,6 +39,3 @@ function trataErro(err){
     console.log(err);
     document.getElementById("msg").style="visibility:visible";
 }
-function logout(){
-        localStorage.removeItem("VMuser");   
-}

@@ -52,7 +52,7 @@ function recuperaDetalhe() {
 
     // inicio das alterações
 
-   var idmaquina = usuario.pedidos[id - 1].maquina.id;  
+     var idmaquina = usuario.pedidos[id - 1].maquina.id;
      var process = usuario.pedidos[id - 1].maquina.processador;
      var memo = usuario.pedidos[id - 1].maquina.memoriaGB;
      var capacid = usuario.pedidos[id - 1].maquina.capacidadeHD;
